@@ -47,6 +47,6 @@ client = WeChatClient(app_id, app_secret)
 
 wm = WeChatMessage(client)
 weather = get_weather()
-data = {"date":{"value":weather['date']},"city":{"value":weather['city']},"weather":{"value":weather['weather']},"min_temp":{"value":weather['low']},"max_temp":{"value":weather['high']},"temp":{"value":weather['temp']},"wind_dir":{"value":weather['wind']},"pm2p5":{"value":weather['pm25']},"category":{"value":weather['airQuality']},"love_days":{"value":get_count()},"birthday":{"value":get_birthday()},"words":{"value":get_words(), "color":get_random_color()}}
+data = {"date":{"value":weather['date'], "color":get_random_color()},"region":{"value":weather['city'], "color":get_random_color()},"weather":{"value":weather['weather'], "color":get_random_color()},"min_temp":{"value":math.floor(weather['low']), "color":get_random_color()},"max_temp":{"value":math.ceil(weather['high']), "color":get_random_color()},"temp":{"value":math.floor(weather['temp']), "color":get_random_color()},"wind_dir":{"value":weather['wind'], "color":get_random_color()},"pm2p5":{"value":math.ceil(weather['pm25']), "color":get_random_color()},"category":{"value":weather['airQuality'], "color":get_random_color()},"love_days":{"value":get_count(), "color":get_random_color()},"birthday":{"value":get_birthday(), "color":get_random_color()},"words":{"value":get_words(), "color":get_random_color()}}
 res = wm.send_template(user_id, template_id, data)
 print(res)
